@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class AccountExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
-            AccountNotFoundException.class
+            AccountNotFoundException.class,
+            AccountNotEnoughMoneyException.class
     })
     public ResponseEntity<AccountErrorResponse> handleMissingParam(Exception ex, WebRequest request) {
         AccountErrorResponse errors = new AccountErrorResponse();
