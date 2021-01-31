@@ -13,7 +13,7 @@ public class EventStore {
     private final Map<Long, List<Event>> store = new HashMap<>();
 
     public void addEvent(Long id, Event event) {
-        List<Event> events = getEventsById(id);
+        List<Event> events = store.get(id);
         if (events == null) {
             events = new ArrayList<>(List.of(event));
             store.put(id, events);

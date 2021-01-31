@@ -1,17 +1,15 @@
 package gryc.bank.demo.cqrs.projection;
 
 import gryc.bank.demo.cqrs.event.Event;
-import gryc.bank.demo.cqrs.query.AccountExistQuery;
-import gryc.bank.demo.cqrs.repository.EventStore;
-import gryc.bank.demo.cqrs.repository.AccountReadRepository;
 import gryc.bank.demo.cqrs.query.AccountBalanceQuery;
+import gryc.bank.demo.cqrs.query.AccountExistQuery;
+import gryc.bank.demo.cqrs.repository.AccountReadRepository;
+import gryc.bank.demo.cqrs.repository.EventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AccountProjection {

@@ -7,12 +7,11 @@ import gryc.bank.demo.cqrs.domain.AccountAggregate;
 import gryc.bank.demo.cqrs.event.AccountCreatedEvent;
 import gryc.bank.demo.cqrs.event.Event;
 import gryc.bank.demo.cqrs.projection.AccountProjection;
+import gryc.bank.demo.cqrs.query.AccountBalanceQuery;
 import gryc.bank.demo.cqrs.query.AccountExistQuery;
 import gryc.bank.demo.restservice.dto.AccountBalanceChangeDto;
-import gryc.bank.demo.cqrs.query.AccountBalanceQuery;
 import gryc.bank.demo.restservice.dto.CreateAccountDto;
 import gryc.bank.demo.restservice.exception.AccountNotEnoughMoneyException;
-import gryc.bank.demo.restservice.exception.AccountNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,9 +48,6 @@ public class AccountService {
 
     public void changeBalance(AccountBalanceChangeDto accountBalanceChangeDto) {
         AccountExistQuery accountExistQuery = new AccountExistQuery(accountBalanceChangeDto.getAccountId());
-        if (!accountProjection.handle(accountExistQuery)) {
-           throw new AccountNotFoundException(accountExistQuery.getAccountId());
-        }
         if (isNotEnoughMoney(accountBalanceChangeDto)) {
             AccountNotEnoughMoneyCommand accountNotEnoughMoneyCommand = new AccountNotEnoughMoneyCommand(accountBalanceChangeDto);
             accountAggregate.handleAccountNotEnoughCommand(accountNotEnoughMoneyCommand);
