@@ -22,7 +22,6 @@ public class AccountAggregate {
     private final AccountWriteRepository writeRepository;
     private final AccountIdHandler idHandler;
 
-
     @Autowired
     public AccountAggregate(EventStore eventStore, AccountWriteRepository writeRepository, AccountIdHandler idHandler) {
         this.eventStore = eventStore;
@@ -72,4 +71,5 @@ public class AccountAggregate {
         eventStore.addEvent(accountBalanceExceededEvent.getAccountId(), accountBalanceExceededEvent);
         return Arrays.asList(accountBalanceExceededEvent);
     }
+
 }

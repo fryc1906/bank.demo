@@ -24,12 +24,10 @@ public class AccountService {
     private AccountAggregate accountAggregate;
     private AccountProjection accountProjection;
 
-
     @Autowired
     public AccountService(AccountAggregate accountAggregate, AccountProjection accountProjection) {
         this.accountAggregate = accountAggregate;
         this.accountProjection = accountProjection;
-
     }
 
     public long createUser(CreateAccountDto dto) {
@@ -62,8 +60,6 @@ public class AccountService {
         AccountBalanceChangeCommand accountBalanceChangeCommand =
                 new AccountBalanceChangeCommand(accountBalanceChangeDto);
         accountAggregate.handleBalanceChangeCommand(accountBalanceChangeCommand);
-
-
     }
 
     private boolean isNotEnoughMoney(AccountBalanceChangeDto accountBalanceChangeDto) {
@@ -72,15 +68,5 @@ public class AccountService {
         int compareResult = currentBalance.add(accountBalanceChangeDto.getChangeAmount()).compareTo(BigInteger.ZERO);
         return compareResult < 0;
     }
-
-
-    public void addFunds(AccountBalanceChangeDto accountBalanceChangeDto) {
-
-    }
-
-    public void withdrawFunds(AccountBalanceChangeDto accountBalanceChangeDto) {
-
-    }
-
 
 }

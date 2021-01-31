@@ -1,7 +1,5 @@
 package gryc.bank.demo.cqrs.query;
 
-import java.math.BigInteger;
-
 public class AccountBalanceQuery {
     private final long accountId;
 

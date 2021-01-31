@@ -12,4 +12,5 @@ public class GetBalanceResponse {
     public BigInteger getBalance() {
         return balance;
     }
+
 }

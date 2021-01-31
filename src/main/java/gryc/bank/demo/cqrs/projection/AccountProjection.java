@@ -37,4 +37,5 @@ public class AccountProjection {
         accountProjector.project(accountExistQuery.getAccountId(), eventsById);
         return readRepository.getAccountById(accountExistQuery.getAccountId()) != null;
     }
+
 }

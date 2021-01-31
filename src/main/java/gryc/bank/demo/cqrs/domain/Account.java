@@ -43,4 +43,5 @@ public class Account {
     public void changeBalance(BigInteger balance) {
         this.balance = this.balance.add(balance);
     }
+
 }

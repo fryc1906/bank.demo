@@ -11,7 +11,6 @@ import java.util.*;
 public class AccountWriteRepository {
     private Map<Long, Account> accounts = new HashMap<>();
 
-
     public Account createAccount(long id, AccountCreateCommand command) {
         Account newAccount = new Account(id, command);
         accounts.put(newAccount.getId(), newAccount);
@@ -21,6 +20,6 @@ public class AccountWriteRepository {
     public void changeBalance(AccountBalanceChangeCommand command) {
         Account account = accounts.get(command.getId());
         account.changeBalance(command.getBalanceChange());
-
     }
+
 }

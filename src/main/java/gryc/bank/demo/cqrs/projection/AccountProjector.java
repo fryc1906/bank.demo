@@ -53,5 +53,4 @@ public class AccountProjector {
         accountById.changeBalance(accountBalanceChangeCommand.getBalanceChange());
     }
 
-
 }

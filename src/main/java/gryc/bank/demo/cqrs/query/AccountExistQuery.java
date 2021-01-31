@@ -10,4 +10,5 @@ public class AccountExistQuery {
     public long getAccountId() {
         return accountId;
     }
+
 }

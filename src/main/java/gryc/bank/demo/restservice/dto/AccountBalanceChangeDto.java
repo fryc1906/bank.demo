@@ -21,4 +21,5 @@ public class AccountBalanceChangeDto {
     public BigInteger getChangeAmount() {
         return changeAmount;
     }
+
 }

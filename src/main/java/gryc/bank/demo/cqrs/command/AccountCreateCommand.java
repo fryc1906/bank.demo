@@ -8,12 +8,6 @@ public class AccountCreateCommand {
     private final CreateAccountDto createAccountDto;
     private final BigInteger initialBalance = BigInteger.ZERO;
 
-//    public CreateAccountCommand(long id, String name, String surname) {
-//        this.id = id;
-//        this.name = name;
-//        this.surname = surname;
-//    }
-
     public AccountCreateCommand(CreateAccountDto createAccountDto) {
         this.createAccountDto = createAccountDto;
     }
@@ -33,4 +27,5 @@ public class AccountCreateCommand {
     public BigInteger getInitialBalance() {
         return initialBalance;
     }
+
 }

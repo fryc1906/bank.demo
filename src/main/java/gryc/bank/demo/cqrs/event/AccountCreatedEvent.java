@@ -7,7 +7,6 @@ public class AccountCreatedEvent extends Event {
     private final long id;
     private CreateAccountDto createAccountDto;
 
-
     public AccountCreatedEvent(long id, AccountCreateCommand command) {
         this.id = id;
         this.createAccountDto = command.getCreateAccountDto();
@@ -16,6 +15,7 @@ public class AccountCreatedEvent extends Event {
     public CreateAccountDto getCreateAccountDto() {
         return createAccountDto;
     }
+
     public long getId() {
         return id;
     }

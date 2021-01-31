@@ -3,8 +3,6 @@ package gryc.bank.demo.cqrs.repository;
 import gryc.bank.demo.cqrs.command.AccountCreateCommand;
 import gryc.bank.demo.cqrs.domain.Account;
 import gryc.bank.demo.restservice.exception.AccountNotFoundException;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

@@ -2,8 +2,6 @@ package gryc.bank.demo.cqrs.command;
 
 import gryc.bank.demo.restservice.dto.AccountBalanceChangeDto;
 
-import java.math.BigInteger;
-
 public class AccountNotEnoughMoneyCommand {
     private AccountBalanceChangeDto accountBalanceChangeDto;
 
@@ -14,4 +12,5 @@ public class AccountNotEnoughMoneyCommand {
     public AccountBalanceChangeDto getAccountBalanceChangeDto() {
         return accountBalanceChangeDto;
     }
+
 }

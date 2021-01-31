@@ -33,4 +33,5 @@ public class AccountErrorResponse {
     public void setError(String error) {
         this.error = error;
     }
+
 }

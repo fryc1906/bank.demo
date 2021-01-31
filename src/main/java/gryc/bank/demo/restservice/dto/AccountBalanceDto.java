@@ -12,4 +12,5 @@ public class AccountBalanceDto {
     public BigInteger getBalance() {
         return balance;
     }
+
 }

@@ -25,4 +25,5 @@ public class AccountFundsAddedEvent extends Event {
     public AccountBalanceChangeDto getAccountBalanceChangeDto() {
         return accountBalanceChangeDto;
     }
+
 }
