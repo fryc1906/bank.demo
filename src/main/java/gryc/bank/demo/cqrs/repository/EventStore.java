@@ -5,10 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -26,7 +23,7 @@ public class EventStore {
     }
 
     public List<Event> getEventsById(long id) {
-        return store.get(id);
+        return Optional.ofNullable(store.get(id)).orElseGet(ArrayList::new);
     }
 
 }

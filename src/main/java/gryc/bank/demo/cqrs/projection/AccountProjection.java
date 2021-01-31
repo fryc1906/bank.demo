@@ -32,8 +32,7 @@ public class AccountProjection {
     }
 
     public boolean handle(AccountExistQuery accountExistQuery) {
-        List<Event> eventsById = Optional.ofNullable(eventStore.getEventsById(accountExistQuery.getAccountId()))
-                .orElseGet(ArrayList::new);
+        List<Event> eventsById = eventStore.getEventsById(accountExistQuery.getAccountId());
         accountProjector.project(accountExistQuery.getAccountId(), eventsById);
         return readRepository.getAccountById(accountExistQuery.getAccountId()) != null;
     }
