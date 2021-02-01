@@ -19,8 +19,8 @@ import java.util.List;
 
 @Service
 public class AccountService {
-    private AccountAggregate accountAggregate;
-    private AccountProjection accountProjection;
+    private final AccountAggregate accountAggregate;
+    private final AccountProjection accountProjection;
 
     @Autowired
     public AccountService(AccountAggregate accountAggregate, AccountProjection accountProjection) {
@@ -30,7 +30,7 @@ public class AccountService {
 
     public long createUser(CreateAccountDto dto) {
         AccountCreateCommand accountCreateCommand = new AccountCreateCommand(dto);
-        List<Event> events = accountAggregate.handleCreateUserCommand(accountCreateCommand);
+        List<Event> events = accountAggregate.handleCommand(accountCreateCommand);
         return events.stream()
                 .filter(a -> a instanceof AccountCreatedEvent)
                 .map(a -> (AccountCreatedEvent)a)
@@ -41,19 +41,19 @@ public class AccountService {
 
     public BigInteger getBalance(long id) {
         AccountBalanceQuery accountBalanceQuery = new AccountBalanceQuery(id);
-        accountAggregate.handleAccountBalanceQuery(accountBalanceQuery);
+        accountAggregate.handleQuery(accountBalanceQuery);
         return accountProjection.handle(accountBalanceQuery);
     }
 
     public void changeBalance(AccountBalanceChangeDto accountBalanceChangeDto) {
         if (isNotEnoughMoney(accountBalanceChangeDto)) {
             AccountNotEnoughMoneyCommand accountNotEnoughMoneyCommand = new AccountNotEnoughMoneyCommand(accountBalanceChangeDto);
-            accountAggregate.handleAccountNotEnoughCommand(accountNotEnoughMoneyCommand);
+            accountAggregate.handleCommand(accountNotEnoughMoneyCommand);
             throw new AccountNotEnoughMoneyException(accountBalanceChangeDto);
         }
         AccountBalanceChangeCommand accountBalanceChangeCommand =
                 new AccountBalanceChangeCommand(accountBalanceChangeDto);
-        accountAggregate.handleBalanceChangeCommand(accountBalanceChangeCommand);
+        accountAggregate.handleCommand(accountBalanceChangeCommand);
     }
 
     private boolean isNotEnoughMoney(AccountBalanceChangeDto accountBalanceChangeDto) {

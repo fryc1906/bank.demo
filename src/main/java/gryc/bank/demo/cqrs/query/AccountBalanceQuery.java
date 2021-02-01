@@ -1,6 +1,6 @@
 package gryc.bank.demo.cqrs.query;
 
-public class AccountBalanceQuery {
+public class AccountBalanceQuery implements IQuery{
     private final long accountId;
 
     public AccountBalanceQuery(long accountId) {

@@ -4,7 +4,7 @@ import gryc.bank.demo.restservice.dto.AccountBalanceChangeDto;
 
 import java.math.BigInteger;
 
-public class AccountBalanceChangeCommand {
+public class AccountBalanceChangeCommand implements ICommand {
     private final AccountBalanceChangeDto accountBalanceChangeDto;
 
     public AccountBalanceChangeCommand(AccountBalanceChangeDto dto) {

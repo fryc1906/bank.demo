@@ -4,7 +4,7 @@ import gryc.bank.demo.restservice.dto.CreateAccountDto;
 
 import java.math.BigInteger;
 
-public class AccountCreateCommand {
+public class AccountCreateCommand implements ICommand {
     private final CreateAccountDto createAccountDto;
     private final BigInteger initialBalance = BigInteger.ZERO;
 
