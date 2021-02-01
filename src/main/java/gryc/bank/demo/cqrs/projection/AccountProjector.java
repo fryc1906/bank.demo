@@ -11,8 +11,8 @@ import java.util.List;
 
 @Service
 public class AccountProjector {
-    private AccountReadRepository repository;
-    private ApplyStrategyHelper strategyHelper;
+    private final AccountReadRepository repository;
+    private final ApplyStrategyHelper strategyHelper;
 
     @Autowired
     public AccountProjector(AccountReadRepository repository, ApplyStrategyHelper strategyHelper) {
@@ -21,30 +21,12 @@ public class AccountProjector {
     }
 
     public void project(long accountId, List<Event> events) {
-        for (Event event : events) {
-            strategyHelper.getStrategies().stream()
+            events.forEach(event ->
+                strategyHelper.getStrategies().stream()
                     .filter(strategy -> strategy.isApplicable(event))
                     .findAny()
                     .orElseGet(ApplyNonMutatingEmptyEvent::new)
-                    .apply(event, repository);
-        }
+                    .apply(event, repository));
     }
-
-//    private void apply(long accountId, AccountCreatedEvent event) {
-//        AccountCreateCommand accountCreateCommand = new AccountCreateCommand(event.getCreateAccountDto());
-//        repository.addAccount(accountId, accountCreateCommand);
-//    }
-//
-//    private void apply(AccountFundsAddedEvent event) {
-//        AccountBalanceChangeCommand accountBalanceChangeCommand = new AccountBalanceChangeCommand(event.getAccountBalanceChangeDto());
-//        Account accountById = repository.getAccountById(accountBalanceChangeCommand.getId());
-//        accountById.changeBalance(accountBalanceChangeCommand.getBalanceChange());
-//    }
-
-//    private void apply(AccountFundsWithdrawnEvent event) {
-//        AccountBalanceChangeCommand accountBalanceChangeCommand = new AccountBalanceChangeCommand(event.getAccountBalanceChangeDto());
-//        Account accountById = repository.getAccountById(accountBalanceChangeCommand.getId());
-//        accountById.changeBalance(accountBalanceChangeCommand.getBalanceChange());
-//    }
 
 }
