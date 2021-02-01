@@ -1,6 +1,7 @@
 package gryc.bank.demo.cqrs.projection;
 
 import gryc.bank.demo.cqrs.event.Event;
+import gryc.bank.demo.cqrs.projection.strategy.ApplyStrategyHelper;
 import gryc.bank.demo.cqrs.query.AccountBalanceQuery;
 import gryc.bank.demo.cqrs.query.AccountExistQuery;
 import gryc.bank.demo.cqrs.repository.AccountReadRepository;
@@ -18,9 +19,9 @@ public class AccountProjection {
     private EventStore eventStore;
 
     @Autowired
-    public AccountProjection(AccountReadRepository readRepository, EventStore eventStore) {
+    public AccountProjection(AccountReadRepository readRepository, EventStore eventStore, ApplyStrategyHelper applyStrategyHelper) {
         this.readRepository = readRepository;
-        this.accountProjector = new AccountProjector(readRepository);
+        this.accountProjector = new AccountProjector(readRepository, applyStrategyHelper);
         this.eventStore = eventStore;
     }
 
