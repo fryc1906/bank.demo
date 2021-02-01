@@ -8,7 +8,6 @@ import gryc.bank.demo.cqrs.event.AccountCreatedEvent;
 import gryc.bank.demo.cqrs.event.Event;
 import gryc.bank.demo.cqrs.projection.AccountProjection;
 import gryc.bank.demo.cqrs.query.AccountBalanceQuery;
-import gryc.bank.demo.cqrs.query.AccountExistQuery;
 import gryc.bank.demo.restservice.dto.AccountBalanceChangeDto;
 import gryc.bank.demo.restservice.dto.CreateAccountDto;
 import gryc.bank.demo.restservice.exception.AccountNotEnoughMoneyException;
@@ -47,7 +46,6 @@ public class AccountService {
     }
 
     public void changeBalance(AccountBalanceChangeDto accountBalanceChangeDto) {
-        AccountExistQuery accountExistQuery = new AccountExistQuery(accountBalanceChangeDto.getAccountId());
         if (isNotEnoughMoney(accountBalanceChangeDto)) {
             AccountNotEnoughMoneyCommand accountNotEnoughMoneyCommand = new AccountNotEnoughMoneyCommand(accountBalanceChangeDto);
             accountAggregate.handleAccountNotEnoughCommand(accountNotEnoughMoneyCommand);
