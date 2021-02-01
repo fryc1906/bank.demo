@@ -9,7 +9,7 @@ import gryc.bank.demo.cqrs.query.IQuery;
 import java.util.Arrays;
 import java.util.List;
 
-public class AccountBalanceQueryHandler implements IQueryHandler {
+public class AccountBalanceQueryHandler implements IHandler<IQuery> {
     @Override
     public boolean isApplicable(IQuery query) {
         return query instanceof AccountBalanceQuery;

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AccountBalanceChangeCommandHandler implements ICommandHandler {
+public class AccountBalanceChangeCommandHandler implements IHandler<ICommand> {
     private EventStore eventStore;
     @Override
     public boolean isApplicable(ICommand command) {

@@ -9,7 +9,7 @@ import gryc.bank.demo.cqrs.event.Event;
 import java.util.Arrays;
 import java.util.List;
 
-public class AccountNotEnoughMoneyCommandHandler implements ICommandHandler {
+public class AccountNotEnoughMoneyCommandHandler implements IHandler<ICommand> {
     @Override
     public boolean isApplicable(ICommand command) {
         return command instanceof AccountNotEnoughMoneyCommand;

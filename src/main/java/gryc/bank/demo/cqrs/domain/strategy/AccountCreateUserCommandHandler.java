@@ -9,7 +9,7 @@ import gryc.bank.demo.cqrs.event.Event;
 import java.util.Arrays;
 import java.util.List;
 
-public class AccountCreateUserCommandHandler implements ICommandHandler {
+public class AccountCreateUserCommandHandler implements IHandler<ICommand>{
     @Override
     public boolean isApplicable(ICommand command) {
         return command instanceof AccountCreateCommand;
